@@ -8,6 +8,8 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
+from langchain_community.retrievers import BM25Retriever
+from langchain_community.retrievers import EnsembleRetriever 
 
 # Load environment variables
 load_dotenv()
@@ -98,8 +100,9 @@ def load_document():
 def chat():
     """Main chat loop"""
     print("\n" + "="*50)
-    print("RAG Document Chatbot")
+    print("Hi! I am your personal RAG Document chatbot")
     print("="*50)
+    print("\n Feel free to load in  document and ask me any question about it." )
     print("\nCommands:")
     print("  /load  - Load a new document")
     print("  quit   - Exit the chatbot")
@@ -120,7 +123,7 @@ def chat():
         
         # Check for load command
         if question.lower() == '/load':
-            print("\n--- Loading New Document ---")
+            print("\n--- Loading New -Document ---")
             qa_chain, retriever, current_doc = load_document()
             print("--- Ready to answer questions about the new document ---\n")
             continue
